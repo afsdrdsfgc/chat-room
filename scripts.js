@@ -16,7 +16,7 @@ async function send() {
     }
   }
     const message = {user: savedname, message: letter.value}
-    const send_db = await fetch('https://tinkr.tech/sdb/rafael_chat_final', {
+    const send_db = await fetch('https://tinkr.tech/sdb/rafael_chat_final1', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(message)
@@ -26,7 +26,7 @@ async function send() {
   message_log ()}
 
 async function message_log() {
-  const response = await fetch('https://tinkr.tech/sdb/rafael_chat_final');
+  const response = await fetch('https://tinkr.tech/sdb/rafael_chat_final1');
   const documents = await response.json();
   
   log.innerHTML = ''; 
