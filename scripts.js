@@ -8,6 +8,7 @@ async function send() {
   if (savedname === null){
     const username = prompt('What is your username?');
     if (username){
+      savedname = username
       localStorage.setItem('userName', username)
     }
     else {
@@ -40,4 +41,7 @@ async function message_log() {
 
 sendbtn.addEventListener("click", send)
 
+letter.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") send();
+});
 
