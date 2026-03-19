@@ -1,23 +1,31 @@
 const sendbtn = document.querySelector('#send')
 const letter = document.querySelector('input')
-const log = document.querySelector('div')
+const log = document.querySelector('#chat')
+let savedname = localStorage.getItem('userName')
 
 
-
-async function send(event) {
-    const message = {user: 'rafael', message: letter.value}
-    const send_db = await fetch('https://tinkr.tech/sdb/rafael_chat_final_test', {
+async function send() {
+  if (savedname === null){
+    const username = prompt('What is your username?');
+    if (username){
+      localStorage.setItem('userName', username)
+    }
+    else {
+      return
+    }
+  }
+    const message = {user: savedname, message: letter.value}
+    const send_db = await fetch('https://tinkr.tech/sdb/rafael_chat_final', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(message)
   });
   const send_out = await send_db.json();
   console.log(send_out)
-  message_log ()
-}
+  message_log ()}
 
 async function message_log() {
-  const response = await fetch('https://tinkr.tech/sdb/rafael_chat_final_test');
+  const response = await fetch('https://tinkr.tech/sdb/rafael_chat_final');
   const documents = await response.json();
   
   log.innerHTML = ''; 
